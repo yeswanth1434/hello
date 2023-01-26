@@ -9,8 +9,13 @@ pipeline {
         }
         stage('git checkout') {
             steps {
-                git branch: 'main', credentialsId: 'git-creds', url: 'https://github.com/yeswanth1434/hello'    
+                git branch: 'main', credentialsId: 'git-creds', url: 'https://github.com/yeswanth1434/hello'
+            }
+        }
+        stage('maven package') {
+            steps {
+                sh 'mvn clean package'
             }
         }
     }
-}    
+}
