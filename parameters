@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    parameters {
+        string defaultValue: '10', description: 'Enter number one', name: 'varOne'
+        string defaultValue: '20', description: 'Enter number two', name: 'varTwo'
+    }
+
+    stages {
+        stage('add two numbers') {
+            steps {
+                script {
+                    def varOne = params.varOne as int
+                    def varTwo = params.varTwo as int
+                    def result = varOne+varTwo
+                    echo "result is ${result}"
+                }
+            }
+        }
+    }
+}
+
+
+
+square numbers
+
+pipeline {
+    agent any
+    parameters {
+        string defaultValue: '10', description: 'Enter number one', name: 'varOne'
+    }
+
+    stages {
+        stage('square number') {
+            steps {
+                script {
+                    def varOne = params.varOne as int
+                    def result = varOne*varOne
+                    echo "result is ${result}"
+                }
+            }
+        }
+    }
+}
+
