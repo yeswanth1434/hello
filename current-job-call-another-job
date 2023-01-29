@@ -1,0 +1,38 @@
+CALL NORMAL JOB TO BUILD SIMULTANEOUSLY 
+
+pipeline {
+    agent any
+
+    stages {
+        stage('checking version') {
+            steps {
+                sh "jenkins --version"
+            }
+        }
+    }
+    post{
+        success{
+            build 'hello'
+        }
+    }
+}
+
+
+CALL PARAMETRS JOB
+
+pipeline {
+    agent any
+
+    stages {
+        stage('checking version') {
+            steps {
+                sh "jenkins --version"
+            }
+        }
+    }
+    post{
+        success{
+            build job:'prameterized',parameters:[string(name:'varOne',value:'100'),string(name:'varTwo',value:'200')]
+        }
+    }
+}
