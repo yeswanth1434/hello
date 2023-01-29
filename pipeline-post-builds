@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checking version') {
+            steps {
+                sh "jenkins --version"
+            }
+        }
+    }
+    post {
+        success {
+            // One or more steps need to be included within each condition's block.
+            echo "this jos is success"
+            echo "incase of this job fails email to develpment team"
+        }
+        failure {
+            // One or more steps need to be included within each condition's block.
+            echo "this jos is failure"
+            echo "if this job is success deploy to tomcat"
+        }
+    }    
+}
